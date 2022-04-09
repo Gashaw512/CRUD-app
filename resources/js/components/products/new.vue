@@ -66,7 +66,10 @@ const saveProduct = () => {
       });
     })
     .catch((error) => {
-      console.log("Hi error");
+     toast.fire({
+        icon: "success",
+        title: "Error Hapened",
+      });
     });
 };
 </script>

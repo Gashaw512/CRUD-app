@@ -31,9 +31,9 @@ if($request->photo !=''){
   $sub=substr($request->photo, 0, $strpos );
   $ex=explode('/', $sub)[1];
   $name=time().".".$ex;
-  // $image=Image::make($request->photo)->resize(200, 200);
+   $image=Image::make($request->photo)->resize(200, 200);
   $upload_path=public_path()."/upload/";
-  // $image->save($upload_path.$name);
+  $image->save($upload_path.$name);
   $product->photo=$name;
 }
 else{

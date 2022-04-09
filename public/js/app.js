@@ -19704,7 +19704,10 @@ __webpack_require__.r(__webpack_exports__);
           title: "product added seccesfully"
         });
       })["catch"](function (error) {
-        console.log("Hi error");
+        toast.fire({
+          icon: "success",
+          title: "Error Hapened"
+        });
       });
     };
 

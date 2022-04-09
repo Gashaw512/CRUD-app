@@ -21,6 +21,7 @@
         "@babel/preset-env": "^7.16.11",
         "@vue/compiler-sfc": "^3.2.31",
         "babel-loader": "^8.2.4",
+        "sweetalert2": "^11.4.8",
         "vue": "^3.2.31",
         "vue-router": "^4.0.13"
     }

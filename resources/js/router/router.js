@@ -1,5 +1,6 @@
 const { createRouter, createWebHistory } = require("vue-router")
 import Index from '../components/products/Index.vue'
+import ProductNew from '../components/products/new.vue'
 import NotFound from '../components/NotFound.vue'
 const routes=[
     {
@@ -9,6 +10,10 @@ const routes=[
     {
         path:"/:pathMatch(.*)*",
         component:NotFound,  
+    },
+    {
+        path:"/product/new",
+        component:ProductNew,  
     }
 
 ]

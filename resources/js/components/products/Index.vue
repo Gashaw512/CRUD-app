@@ -1,4 +1,35 @@
-<template>
+
+ <script setup>
+ import { onMounted, ref } from 'vue';
+ import { useRouter } from 'vue-router'
+ const router= useRouter();
+
+ let products=ref([
+
+ ])
+ onMounted(async()=>{
+     getProducts();
+ });
+
+ const productNew=()=>{
+     router.push('/product/new')
+ }
+
+ const getProducts= async ()=>{
+     let reponse = await axios.get('/api/get_all_product');
+
+     products.value=reponse.data.products;
+     console.log('products', products.value);
+ }
+ const ourImage=(img)=>{
+     return '/upload'+img;
+ }
+ 
+ </script>
+
+
+
+ <template>
     <div class="container">
      <div class="products__list table  my-3">
               
@@ -7,7 +38,7 @@
                 <h1 class="my-1">Products</h1>
             </div>
             <div class="customers__titlebar--item">
-                <button class="btn btn-secondary my-1" >
+                <button class="btn btn-secondary my-1" @click="productNew">
                     Add Product
                 </button>
             </div>
@@ -28,29 +59,40 @@
         </div>
 
         <!-- product 1 -->
-        <div class="table--items products__list__item" >
+        <div class="table--items products__list__item" :v-for="item in products" key="item.id" v-if="products.length>0"  >
             <div class="products__list__item--imgWrapper">
-                <img class="products__list__item--img" src="1.jpg"  style="height: 40px;">
+                <img class="products__list__item--img" :src="ourImage(item.photo)"  style="height: 40px;" v-if="item.photo">
             </div>
-            <a href="# " class="table--items--col2">
-                Product name
-            </a>
             <p class="table--items--col2">
-                type
+               {{item.name}}
+            </p>
+            <p class="table--items--col2">
+              {{itme.type}}
             </p>
             <p class="table--items--col3">
-                10
+               {{item.quantity}}
             </p>     
-            <div>     
+        <div>     
                 <button class="btn-icon btn-icon-success" >
                     <i class="fas fa-pencil-alt"></i>
                 </button>
                 <button class="btn-icon btn-icon-danger" >
                     <i class="far fa-trash-alt"></i>
                 </button>
-            </div>
         </div>
+
+        </div>
+        <div  class="table--items products__list__item" v-else >
+            <h1>Product Not Found</h1>
+        </div>
+        
 
     </div>
     </div>
+
+   
+
+
+
+
 </template>

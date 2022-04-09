@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+// import {axios} from 'axios'
 
 let form = ref({
   name: "",
@@ -49,7 +50,7 @@ const saveProduct = () => {
   formData.append("quantity", form.value.quantity);
 
   axios
-    .post("/api/add_product", formData,)
+    .post("/api/add_product", formData)
     .then((response) => {
       (form.value.name = ""),
         (form.value.description = ""),

@@ -4,9 +4,8 @@
  import { useRouter } from 'vue-router'
  const router= useRouter();
 
- let products=ref([
+ let products=ref([ ]);
 
- ])
  onMounted(async()=>{
      getProducts();
  });
@@ -58,8 +57,10 @@
             <p class="table--heading--col5">actions</p>
         </div>
 
+
+<!-- v-if="products.length > 0 " -->
         <!-- product 1 -->
-        <div class="table--items products__list__item" :v-for="item in products" key="item.id" v-if="products.length>0"  >
+        <div class="table--items products__list__item" :v-for="item in products" :key="item.id"  v-if="products.length > 0" >
             <div class="products__list__item--imgWrapper">
                 <img class="products__list__item--img" :src="ourImage(item.photo)"  style="height: 40px;" v-if="item.photo">
             </div>
@@ -89,10 +90,4 @@
 
     </div>
     </div>
-
-   
-
-
-
-
 </template>

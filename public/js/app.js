@@ -19688,7 +19688,6 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var saveProduct = function saveProduct() {
-      console.log("Hi save product");
       var formData = new FormData();
       formData.append("name", form.value.name);
       formData.append("description", form.value.description);
@@ -19696,7 +19695,6 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("photo", form.value.photo);
       formData.append("type", form.value.type);
       formData.append("quantity", form.value.quantity);
-      console.log("Hi save product");
       axios.post("/api/add_product", formData).then(function (response) {
         form.value.name = "", form.value.description = "", form.value.type = "", form.value.quantity = "", form.value.price = "", form.value.photo = "", router.push("/");
         toast.fire({

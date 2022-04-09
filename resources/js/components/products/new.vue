@@ -39,7 +39,7 @@ const updatePhoto = (e) => {
 };
 
 const saveProduct = () => {
-  console.log("Hi save product");
+ 
   const formData = new FormData();
   formData.append("name", form.value.name);
   formData.append("description", form.value.description);
@@ -48,10 +48,8 @@ const saveProduct = () => {
   formData.append("type", form.value.type);
   formData.append("quantity", form.value.quantity);
 
-  console.log("Hi save product");
-
   axios
-    .post("/api/add_product", formData)
+    .post("/api/add_product", formData,)
     .then((response) => {
       (form.value.name = ""),
         (form.value.description = ""),

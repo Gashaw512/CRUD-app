@@ -7,9 +7,9 @@ let form = ref({
   name: "",
   description: "",
   quantity: "",
+  type: "",
   price: "",
   photo: "",
-  type: "",
 });
 
 const router = useRouter();
@@ -40,33 +40,36 @@ const updatePhoto = (e) => {
 };
 
 const saveProduct = () => {
- 
   const formData = new FormData();
+
   formData.append("name", form.value.name);
   formData.append("description", form.value.description);
-  formData.append("price", form.value.price);
-  formData.append("photo", form.value.photo);
-  formData.append("type", form.value.type);
   formData.append("quantity", form.value.quantity);
+  formData.append("type", form.value.type);
+  formData.append("price", form.value.price);
+
+
+  //  formData.append("photo", form.value.photo);
 
   axios
-    .post("/api/add_product", formData)
+    .post("/api/add_product/", formData)
     .then((response) => {
-      (form.value.name = ""),
+        form.value.name = "",
         (form.value.description = ""),
         (form.value.type = ""),
         (form.value.quantity = ""),
         (form.value.price = ""),
-        (form.value.photo = ""),
-        router.push("/");
+        // (form.value.photo = ""),
+        console.log(form.value.name)
+        router.push("/index");
       toast.fire({
         icon: "success",
         title: "product added seccesfully",
       });
     })
     .catch((error) => {
-     toast.fire({
-        icon: "success",
+      toast.fire({
+        icon: "danger",
         title: "Error Hapened",
       });
     });
@@ -182,7 +185,7 @@ const saveProduct = () => {
       <!-- Footer Bar -->
       <div class="dflex justify-content-between align-items-center my-3">
         <p></p>
-        <button class="btn btn-secondary" @click="saveProduct">Save</button>
+        <button class="btn btn-secondary" @click="saveProduct()">Save</button>
       </div>
     </div>
   </div>

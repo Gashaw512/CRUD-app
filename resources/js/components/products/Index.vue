@@ -1,7 +1,10 @@
 
  <script setup>
+
  import { onMounted, ref } from 'vue';
+
  import { useRouter } from 'vue-router'
+
  const router= useRouter();
 
  let products=ref([ ]);
@@ -16,7 +19,6 @@
 
  const getProducts= async ()=>{
      let reponse = await axios.get('/api/get_all_product');
-
      products.value=reponse.data.products;
      console.log('products', products.value);
  }
@@ -60,9 +62,9 @@
 
 <!-- v-if="products.length > 0 " -->
         <!-- product 1 -->
-        <div class="table--items products__list__item" :v-for="item in products" :key="item.id"  v-if="products.length > 0" >
+        <div class="table--items products__list__item" :v-for="(item,index) in products" :key="index"  v-if="products.length > 0" >
             <div class="products__list__item--imgWrapper">
-                <img class="products__list__item--img" :src="ourImage(item.photo)"  style="height: 40px;" v-if="item.photo">
+                <!-- <img class="products__list__item--img" :src="ourImage(item.photo)"  style="height: 40px;" v-if="item.photo"> -->
             </div>
             <p class="table--items--col2">
                {{item.name}}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use SebastianBergmann\Environment\Console;
+
 // use Image;
 class ProductController extends Controller
 {
@@ -11,14 +13,16 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return response()->json([
-            'products' => $products,
+            'products' => $products
         ], 200);
+        
     }
 
 
     public function add_product(Request $request)
     {
         $product = new Product();
+
         $product->name = $request->name;
         $product->description = $request->description;
         $product->quantity = $request->quantity;
@@ -46,12 +50,3 @@ class ProductController extends Controller
 
 
 
-// public function up()
-//     {
-//         Schema::create('products', function (Blueprint $table) {
-//             $table->id();
-//             
-//             $table->timestamps();
-            
-//         });
-//     }

@@ -19652,9 +19652,9 @@ __webpack_require__.r(__webpack_exports__);
       name: "",
       description: "",
       quantity: "",
+      type: "",
       price: "",
-      photo: "",
-      type: ""
+      photo: ""
     });
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();
 
@@ -19692,19 +19692,21 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append("name", form.value.name);
       formData.append("description", form.value.description);
-      formData.append("price", form.value.price);
-      formData.append("photo", form.value.photo);
-      formData.append("type", form.value.type);
       formData.append("quantity", form.value.quantity);
-      axios.post("/api/add_product", formData).then(function (response) {
-        form.value.name = "", form.value.description = "", form.value.type = "", form.value.quantity = "", form.value.price = "", form.value.photo = "", router.push("/");
+      formData.append("type", form.value.type);
+      formData.append("price", form.value.price); //  formData.append("photo", form.value.photo);
+
+      axios.post("/api/add_product/", formData).then(function (response) {
+        form.value.name = "", form.value.description = "", form.value.type = "", form.value.quantity = "", form.value.price = "", // (form.value.photo = ""),
+        console.log(form.value.name);
+        router.push("/index");
         toast.fire({
           icon: "success",
           title: "product added seccesfully"
         });
       })["catch"](function (error) {
         toast.fire({
-          icon: "success",
+          icon: "danger",
           title: "Error Hapened"
         });
       });
@@ -19830,21 +19832,24 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"table--heading mt-2 products__list__heading\" style=\"padding-top:20px;background:#FFF;\"><!-- &lt;p class=&quot;table--heading--col1&quot;&gt;&amp;#32;&lt;/p&gt; --><p class=\"table--heading--col1\">image</p><p class=\"table--heading--col2\"> Product </p><p class=\"table--heading--col4\">Type</p><p class=\"table--heading--col3\"> Inventory </p><!-- &lt;p class=&quot;table--heading--col5&quot;&gt;&amp;#32;&lt;/p&gt; --><p class=\"table--heading--col5\">actions</p></div>", 1);
 
 var _hoisted_5 = ["v-for"];
-var _hoisted_6 = {
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "products__list__item--imgWrapper"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img class=\"products__list__item--img\" :src=\"ourImage(item.photo)\"  style=\"height: 40px;\" v-if=\"item.photo\"> ")], -1
+/* HOISTED */
+);
+
+var _hoisted_7 = {
+  "class": "table--items--col2"
 };
-var _hoisted_7 = ["src"];
 var _hoisted_8 = {
   "class": "table--items--col2"
 };
 var _hoisted_9 = {
-  "class": "table--items--col2"
-};
-var _hoisted_10 = {
   "class": "table--items--col3"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn-icon btn-icon-success"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-pencil-alt"
@@ -19856,16 +19861,16 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_11 = {
   key: 1,
   "class": "table--items products__list__item"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Product Not Found", -1
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Product Not Found", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = [_hoisted_13];
+var _hoisted_13 = [_hoisted_12];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "customers__titlebar dflex justify-content-between align-items-center"
@@ -19876,26 +19881,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: $setup.productNew
   }, " Add Product ")])]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" v-if=\"products.length > 0 \" "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" product 1 "), $setup.products.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     "class": "table--items products__list__item",
-    "v-for": _ctx.item in $setup.products,
-    key: _ctx.item.id
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_ctx.item.photo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
-    key: 0,
-    "class": "products__list__item--img",
-    src: $setup.ourImage(_ctx.item.photo),
-    style: {
-      "height": "40px"
-    }
-  }, null, 8
+    "v-for": (_ctx.item, _ctx.index) in $setup.products,
+    key: _ctx.index
+  }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.item.name), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.itme.type), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.item.quantity), 1
+  /* TEXT */
+  ), _hoisted_10], 8
   /* PROPS */
-  , _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.item.name), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.itme.type), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.item.quantity), 1
-  /* TEXT */
-  ), _hoisted_11], 8
-  /* PROPS */
-  , _hoisted_5)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, _hoisted_14))])]);
+  , _hoisted_5)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, _hoisted_13))])]);
 }
 
 /***/ }),
@@ -20023,7 +20019,11 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, null, -1
+var _hoisted_30 = {
+  "class": "dflex justify-content-between align-items-center my-3"
+};
+
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, null, -1
 /* HOISTED */
 );
 
@@ -20085,11 +20085,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.price]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Bar "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "dflex justify-content-between align-items-center my-3"
-  }, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.price]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Bar "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-secondary",
-    onClick: $setup.saveProduct
+    onClick: _cache[5] || (_cache[5] = function ($event) {
+      return $setup.saveProduct();
+    })
   }, "Save")])])]);
 }
 

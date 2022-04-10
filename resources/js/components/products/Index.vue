@@ -21,6 +21,21 @@
      let reponse = await axios.get('/api/get_all_product');
      products.value=reponse.data.products;
      console.log('products', products.value);
+
+     //Prints the required data at the given position
+     console.log("ID  "+products.value[0].id)
+     console.log("ID  "+products.value[3].name)
+     console.log(products.value.length);
+     products= products.value;
+     console.log(products.length);
+     console.log(products[1].name);
+
+   for (let product in products){
+      
+         console.log(product.name)
+
+   }
+
  }
  const ourImage=(img)=>{
      return '/upload'+img;

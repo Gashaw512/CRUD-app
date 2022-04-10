@@ -100,7 +100,7 @@ const saveProduct = () => {
         <div class="products__create__main">
           <div class="products__create__main--addInfo card py-2 px-2 bg-white">
             <p class="mb-1">Name</p>
-            <input type="text" class="input" :v-model="form.name" />
+            <input type="text" class="input" v-model="form.name" />
 
             <p class="my-1">Description (optional)</p>
             <textarea
